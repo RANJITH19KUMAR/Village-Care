@@ -32,6 +32,13 @@
 
         <!-- Your Java files are directly inside src -->
         <sourceDirectory>src</sourceDirectory>
+        
+        <resources>
+        <resource>
+            <directory>src/web</directory>
+            <targetPath>web</targetPath>
+        </resource>
+    </resources>
 
         <plugins>
 
