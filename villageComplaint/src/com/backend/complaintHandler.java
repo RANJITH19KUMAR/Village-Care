@@ -6,7 +6,9 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
-
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,20 +27,20 @@ public class complaintHandler implements HttpHandler {
 		
 		
 		if(path.equals("/") || path.equals("/index.html") || path.equals("/index")) {
-			serveFile(exchange,"src/web/index.html","text/html");
+			serveFile(exchange,"index.html","text/html");
 		}
 		else if(path.equals("/complaint.html") || path.equals("/complaint")) {
-			serveFile(exchange,"src/web/complaint.html","text/html");
+			serveFile(exchange,"complaint.html","text/html");
 		}
 		else if(path.equals("/admin.html") || path.equals("/admin")) {
-			serveFile(exchange,"src/web/admin.html","text/html");
+			serveFile(exchange,"admin.html","text/html");
 		}
 		
 		else if(path.equals("/style.css")) {
-			serveFile(exchange,"src/web/style.css","text/css");
+			serveFile(exchange,"style.css","text/css");
 		}
 		else if(path.equals("/script.js")) {
-			serveFile(exchange,"src/web/script.js","application/javascript");
+			serveFile(exchange,"script.js","application/javascript");
 		}
 		
 		else if(path.equals("/addComplaint") && exchange.getRequestMethod().equalsIgnoreCase("POST")) {
@@ -204,38 +206,87 @@ public class complaintHandler implements HttpHandler {
 
 	private void serveFile(HttpExchange exchange, String filePath, String contentType) throws IOException {
 		
-		 java.nio.file.Path path =
-		            java.nio.file.Paths.get(filePath);
 
-		    if (!java.nio.file.Files.exists(path)) {
+		   String resourcePath =
+	                "web/" + filePath;
 
-		        sendResponse(
-		                exchange,
-		                404,
-		                "File Not Found"
-		        );
+	        InputStream input =
+	                getClass()
+	                        .getClassLoader()
+	                        .getResourceAsStream(resourcePath);
 
-		        return;
-		    }
-		
+	        if (input != null) {
 
-		    byte[] bytes =
-		            java.nio.file.Files.readAllBytes(path);
+	            try (InputStream fileInput = input) {
 
-		    exchange.getResponseHeaders()
-		            .set("Content-Type", contentType);
+	                byte[] bytes =
+	                        fileInput.readAllBytes();
 
-		    exchange.sendResponseHeaders(
-		            200,
-		            bytes.length
-		    );
+	                exchange.getResponseHeaders().set(
+	                        "Content-Type",
+	                        contentType + "; charset=UTF-8"
+	                );
 
-		    OutputStream output =
-		            exchange.getResponseBody();
+	                exchange.sendResponseHeaders(
+	                        200,
+	                        bytes.length
+	                );
 
-		    output.write(bytes);
-		    output.close();
-		
+	                try (OutputStream output =
+	                             exchange.getResponseBody()) {
+
+	                    output.write(bytes);
+	                }
+	            }
+
+	            return;
+	        }
+	        
+	        Path localPath =
+	                Paths.get(
+	                        "src",
+	                        "web",
+	                        filePath
+	                );
+	        
+	        if (Files.exists(localPath)) {
+
+	            byte[] bytes =
+	                    Files.readAllBytes(localPath);
+
+	            exchange.getResponseHeaders().set(
+	                    "Content-Type",
+	                    contentType + "; charset=UTF-8"
+	            );
+
+	            exchange.sendResponseHeaders(
+	                    200,
+	                    bytes.length
+	            );
+
+	            try (OutputStream output =
+	                         exchange.getResponseBody()) {
+
+	                output.write(bytes);
+	            }
+
+	            return;
+	        }
+	      
+
+	        /*
+	         * FILE NOT FOUND
+	         */
+
+	        System.out.println(
+	                "File not found: " + filePath
+	        );
+
+	        sendResponse(
+	                exchange,
+	                404,
+	                "File Not Found: " + filePath
+	        );
+	    }
 	}
 
-}
