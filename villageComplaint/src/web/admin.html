@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            VillageCare
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="complaint.html">
+                Submit Complaint
+            </a>
+
+            <a href="admin.html">
+                Admin
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Dashboard -->
+
+    <section class="dashboard">
+
+        <h1>Admin Dashboard</h1>
+
+        <p>
+            Manage village complaints
+        </p>
+
+
+        <!-- Statistics -->
+
+        <div class="stats-container">
+
+            <div class="stat-card">
+
+                <h3>Total</h3>
+
+                <span id="total-count">
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Pending</h3>
+
+                <span id="pending-count">
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>In Progress</h3>
+
+                <span id="progress-count">
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <h3>Resolved</h3>
+
+                <span id="resolved-count">
+                    0
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Complaint Table -->
+
+        <div class="table-container">
+
+            <h2>Complaint List</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Village</th>
+                        <th>Pincode</th>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                          <th>Action</th>
+                        <th>Status</th>
+                      
+                        
+                       
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="complaintTable">
+
+                    <!-- JavaScript will add data here -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            © 2026 VillageCare
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+

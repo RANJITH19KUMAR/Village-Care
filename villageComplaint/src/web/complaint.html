@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Submit Complaint</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+
+        <div class="logo">
+            VillageCare
+        </div>
+        <div class="nav-links">
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="complaint.html">
+                Submit Complaint
+            </a>
+
+            <a href="admin.html">
+                Admin
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Complaint Form -->
+
+    <section class="form-section">
+
+        <div class="form-container">
+
+            <h1>Submit Your Complaint</h1>
+
+            <p class="form-description">
+                Please provide the details of your village problem.
+            </p>
+
+            <form id="complaintForm">
+                <!-- Name -->
+                <div class="form-group">
+                    <label for="name">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <!-- Mobile -->
+
+                <div class="form-group">
+
+                    <label for="mobile">
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="mobile"
+                        name="mobile"
+                        placeholder="Enter mobile number"
+                        required>
+
+                </div>
+
+
+                <!-- Village -->
+
+                <div class="form-group">
+
+                    <label for="village">
+                        Village
+                    </label>
+
+                    <input
+                        type="text"
+                        id="village"
+                        name="village"
+                        placeholder="Enter village name"
+                        required>
+
+                </div>
+                 <!-- PinCode-->
+                 <div class="form-group">
+
+                    <label for="pincode">
+                        PinCode
+                    </label>
+
+                    <input
+                        type="text"
+                        id="pincode"
+                        name="pincode"
+                        placeholder="Enter Pin Code"
+                        required>
+
+                </div>
+
+
+                <!-- Category -->
+
+                <div class="form-group">
+
+                    <label for="category">
+                        Complaint Category
+                    </label>
+
+                    <select
+                        id="category"
+                        name="category"
+                        required>
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="Road">
+                            Road Problem
+                        </option>
+
+                        <option value="Water">
+                            Water Problem
+                        </option>
+
+                        <option value="Street Light">
+                            Street Light
+                        </option>
+
+                        <option value="Garbage">
+                            Garbage Problem
+                        </option>
+
+                        <option value="Drainage">
+                            Drainage Problem
+                        </option>
+
+                        <option value="Electricity">
+                            Electricity Problem
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Description -->
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Complaint Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        placeholder="Explain your problem..."
+                        required></textarea>
+
+                </div>
+
+
+                <!-- Location -->
+
+                <div class="form-group">
+
+                    <label for="location">
+                        Problem Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        placeholder="Example: Near bus stop">
+
+                </div>
+
+
+                <!-- Submit -->
+
+                <button
+                    type="submit"
+                    class="btn submit-btn">
+
+                    Submit Complaint
+
+                </button>
+
+
+                <!-- Message -->
+
+                <p id="message"></p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            © 2026 VillageCare
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+
