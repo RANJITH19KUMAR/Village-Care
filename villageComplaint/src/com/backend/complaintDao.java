@@ -25,7 +25,7 @@ public class complaintDao {
 	        System.getenv().getOrDefault("MYSQLUSER", "root");
 
 	private String password =
-	        System.getenv().getOrDefault("MYSQLPASSWORD", "");
+	        System.getenv().getOrDefault("MYSQLPASSWORD", "R@njith320");
 
 	private String url =
 	        "jdbc:mysql://" + host + ":" + port + "/" + database
