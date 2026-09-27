@@ -38,8 +38,7 @@ public class complaintDao {
 	    System.out.println("MYSQLPORT: " + port);
 	    System.out.println("MYSQLDATABASE: " + database);
 	    System.out.println("MYSQLUSER: " + username);
-	    System.out.println("MYSQLPASSWORD: "
-	            + (password.isEmpty() ? "NOT SET" : "SET"));
+	    System.out.println("MYSQLPASSWORD: " +password);
 	    System.out.println("JDBC URL: " + url);
 	    
 		return DriverManager.getConnection(url, username, password);
