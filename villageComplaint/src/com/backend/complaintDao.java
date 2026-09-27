@@ -25,7 +25,7 @@ public class complaintDao {
 	
 	
 	private String url =
-	        "jdbc:mysql://" + host + ":" + port + "/" + database;
+	        "jdbc:mysql://" + host + ":" + port + "/" + database + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
 	
 	public void addComplaint(String name , String phone,String village_name,String pincode,String category, String description, String location) {
 		
