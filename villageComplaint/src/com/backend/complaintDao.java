@@ -41,16 +41,23 @@ public class complaintDao {
 	    System.out.println("MYSQLPASSWORD: "
 	            + (password.isEmpty() ? "NOT SET" : "SET"));
 	    System.out.println("JDBC URL: " + url);
+	    
+		return DriverManager.getConnection(url, username, password);
 
-	    return DriverManager.getConnection(url, username, password);
+	    
 	}
 	
-	public void addComplaint(String name , String phone,String village_name,String pincode,String category, String description, String location) {
+	public void addComplaint(String name , String phone,
+			String village_name,String pincode,
+			String category, String description, 
+			String location) throws SQLException {
 		
 		String sql="insert into complaint(name,phone,village_name,pincode,category,description,location) values(?,?,?,?,?,?,?)";
-		
-	try (Connection con =DriverManager.getConnection(url,username,password);
-		PreparedStatement ps = con.prepareStatement(sql)){
+
+		try(
+				Connection con = getConnection();
+				PreparedStatement ps = con.prepareStatement(sql);
+				){
 		
 		ps.setString(1,name);
 		ps.setString(2,phone );
@@ -68,6 +75,7 @@ public class complaintDao {
 		e.printStackTrace();
 	}
 	}
+
 	
 	public String getComplaint() throws SQLException {
 		StringBuilder json = new StringBuilder();
