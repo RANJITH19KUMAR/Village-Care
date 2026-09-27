@@ -11,11 +11,11 @@ import java.sql.SQLException;
 public class complaintDao {
 	private Connection getConnection() throws SQLException {
 
-	    String host = System.getenv("MYSQLHOST");
-	    String port = System.getenv("MYSQLPORT");
-	    String database = System.getenv("MYSQLDATABASE");
-	    String username = System.getenv("MYSQLUSER");
-	    String password = System.getenv("MYSQLPASSWORD");
+	    String host = getEnv("MYSQLHOST","localhost");
+	    String port = getEnv("MYSQLPORT","3306");
+	    String database = getEnv("MYSQLDATABASE","village_db");
+	    String username = getEnv("MYSQLUSER","root");
+	    String password = getEnv("MYSQLPASSWORD","R@njith320");
 
 	    System.out.println("========== DATABASE CONNECTION ==========");
 	    System.out.println("MYSQLHOST: " + host);
@@ -32,6 +32,20 @@ public class complaintDao {
 	    return DriverManager.getConnection(url, username, password);
 	}
 	
+	 private String getEnv(
+	            String variableName,
+	            String defaultValue) {
+
+	        String value =
+	                System.getenv(variableName);
+
+	        if (value == null || value.isBlank()) {
+	            return defaultValue;
+	        }
+
+	        return value;
+	    }
+
 	public void addComplaint(String name , String phone,
 			String village_name,String pincode,
 			String category, String description, 
