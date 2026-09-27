@@ -9,41 +9,27 @@ import java.sql.SQLException;
 
 
 public class complaintDao {
-	
-	
-	
-	private String host =
-	        System.getenv().getOrDefault("MYSQLHOST", "localhost");
-
-	private String port =
-	        System.getenv().getOrDefault("MYSQLPORT", "3306");
-
-	private String database =
-	        System.getenv().getOrDefault("MYSQLDATABASE", "village_db");
-
-	private String username =
-	        System.getenv().getOrDefault("MYSQLUSER", "root");
-
-	private String password =
-	        System.getenv().getOrDefault("MYSQLPASSWORD", "R@njith320");
-
-	private String url =
-	        "jdbc:mysql://" + host + ":" + port + "/" + database
-	        + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-	
 	private Connection getConnection() throws SQLException {
+
+	    String host = System.getenv("MYSQLHOST");
+	    String port = System.getenv("MYSQLPORT");
+	    String database = System.getenv("MYSQLDATABASE");
+	    String username = System.getenv("MYSQLUSER");
+	    String password = System.getenv("MYSQLPASSWORD");
 
 	    System.out.println("========== DATABASE CONNECTION ==========");
 	    System.out.println("MYSQLHOST: " + host);
 	    System.out.println("MYSQLPORT: " + port);
 	    System.out.println("MYSQLDATABASE: " + database);
 	    System.out.println("MYSQLUSER: " + username);
-	    System.out.println("MYSQLPASSWORD: " +password);
-	    System.out.println("JDBC URL: " + url);
-	    
-		return DriverManager.getConnection(url, username, password);
+	    System.out.println("MYSQLPASSWORD: " + (password != null && !password.isEmpty() ? "***SET***" : "EMPTY"));
 
-	    
+	    String url = "jdbc:mysql://" + host + ":" + port + "/" + database
+	            + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+
+	    System.out.println("JDBC URL: jdbc:mysql://" + host + ":" + port + "/" + database);
+
+	    return DriverManager.getConnection(url, username, password);
 	}
 	
 	public void addComplaint(String name , String phone,
