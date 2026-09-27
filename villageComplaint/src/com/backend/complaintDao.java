@@ -6,7 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+
 public class complaintDao {
+	
+	
 	
 	private String host =
 	        System.getenv().getOrDefault("MYSQLHOST", "localhost");
@@ -21,11 +25,25 @@ public class complaintDao {
 	        System.getenv().getOrDefault("MYSQLUSER", "root");
 
 	private String password =
-	        System.getenv().getOrDefault("MYSQLPASSWORD","R@njith320");
-	
-	
+	        System.getenv().getOrDefault("MYSQLPASSWORD", "");
+
 	private String url =
-	        "jdbc:mysql://" + host + ":" + port + "/" + database + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+	        "jdbc:mysql://" + host + ":" + port + "/" + database
+	        + "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+	
+	private Connection getConnection() throws SQLException {
+
+	    System.out.println("========== DATABASE CONNECTION ==========");
+	    System.out.println("MYSQLHOST: " + host);
+	    System.out.println("MYSQLPORT: " + port);
+	    System.out.println("MYSQLDATABASE: " + database);
+	    System.out.println("MYSQLUSER: " + username);
+	    System.out.println("MYSQLPASSWORD: "
+	            + (password.isEmpty() ? "NOT SET" : "SET"));
+	    System.out.println("JDBC URL: " + url);
+
+	    return DriverManager.getConnection(url, username, password);
+	}
 	
 	public void addComplaint(String name , String phone,String village_name,String pincode,String category, String description, String location) {
 		
