@@ -274,10 +274,6 @@ public class complaintHandler implements HttpHandler {
 	        }
 	      
 
-	        /*
-	         * FILE NOT FOUND
-	         */
-
 	        System.out.println(
 	                "File not found: " + filePath
 	        );
@@ -289,4 +285,3 @@ public class complaintHandler implements HttpHandler {
 	        );
 	    }
 	}
-

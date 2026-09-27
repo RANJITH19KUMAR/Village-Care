@@ -83,7 +83,7 @@ public class complaintDao {
 		    json.append("[");
 		String sql="select id,name,phone,village_name,pincode,category,description,location,status from complaint";
 		
-		try(Connection con = DriverManager.getConnection(url,username,password);
+		try(Connection con = getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs= ps.executeQuery();
 				){
@@ -116,15 +116,7 @@ public class complaintDao {
 				
 	}
 
-	private Object escape(String s) {
-		
 
-	    return s == null
-	            ? ""
-	            : s.replace("\\", "\\\\")
-	               .replace("\"", "\\\"");
-	}
-	
 	
 	public void updateComplaint(int id, String status) throws SQLException {
 
@@ -132,7 +124,7 @@ public class complaintDao {
 
 	    try (
 	        Connection con =
-	            DriverManager.getConnection(url, username, password);
+	            getConnection();
 
 	        PreparedStatement ps =
 	            con.prepareStatement(sql)
@@ -146,4 +138,16 @@ public class complaintDao {
 	        System.out.println("Complaint status updated");
 	    }
 	}
+	
+	private String escape(String s) {
+		
+
+	    return s == null
+	            ? ""
+	            : s.replace("\\", "\\\\")
+	               .replace("\"", "\\\"");
+	}
+	
+	
 }
+
