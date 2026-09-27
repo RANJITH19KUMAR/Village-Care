@@ -12,7 +12,7 @@ public class Main {
         try {
 
             int port = Integer.parseInt(
-                    System.getenv().getOrDefault("PORT", "8082")
+                    System.getenv().getOrDefault("PORT", "8080")
             );
 
             HttpServer server = HttpServer.create(
