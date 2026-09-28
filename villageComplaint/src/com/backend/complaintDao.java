@@ -47,7 +47,7 @@ public class complaintDao {
 	    }
 	 
 	 public void initTable() {
-		    String sql = "CREATE TABLE IF NOT EXISTS complaints ("
+		    String sql = "CREATE TABLE IF NOT EXISTS complaint ("
 		        + "id INT AUTO_INCREMENT PRIMARY KEY,"
 		        + "name VARCHAR(100), phone VARCHAR(20),"
 		        + "village_name VARCHAR(100), pincode VARCHAR(10),"
@@ -68,7 +68,7 @@ public class complaintDao {
 			String category, String description, 
 			String location) throws SQLException {
 		
-		String sql="insert into complaints(name,phone,village_name,pincode,category,description,location) values(?,?,?,?,?,?,?)";
+		String sql="insert into complaint(name,phone,village_name,pincode,category,description,location) values(?,?,?,?,?,?,?)";
 
 		try(
 				Connection con = getConnection();
@@ -97,7 +97,7 @@ public class complaintDao {
 		StringBuilder json = new StringBuilder();
 
 		    json.append("[");
-		String sql="select id,name,phone,village_name,pincode,category,description,location,status from complaints";
+		String sql="select id,name,phone,village_name,pincode,category,description,location,status from complaint";
 		
 		try(Connection con = getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -136,7 +136,7 @@ public class complaintDao {
 	
 	public void updateComplaint(int id, String status) throws SQLException {
 
-	    String sql = "UPDATE complaints SET status = ? WHERE id = ?";
+	    String sql = "UPDATE complaint SET status = ? WHERE id = ?";
 
 	    try (
 	        Connection con =
