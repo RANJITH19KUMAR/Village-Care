@@ -55,7 +55,8 @@ public class complaintDao {
 		        + "location VARCHAR(255),"
 		        + "status VARCHAR(20) DEFAULT 'Pending')";
 		    try (Connection con = getConnection();
-		         PreparedStatement ps = con.prepareStatement(sql)) {
+		         PreparedStatement ps = con.prepareStatement(sql)
+		        		 ) {
 		        ps.executeUpdate();
 		        System.out.println("Table ready");
 		    } catch (SQLException e) {
