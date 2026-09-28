@@ -15,7 +15,7 @@ public class complaintDao {
 	    String port = getEnv("MYSQLPORT","3306");
 	    String database = getEnv("MYSQLDATABASE","village_db");
 	    String username = getEnv("MYSQLUSER","root");
-	    String password = getEnv("MYSQLPASSWORD","R@njith320");
+	    String password = getEnv("MYSQLPASSWORD"," ");
 
 	    System.out.println("========== DATABASE CONNECTION ==========");
 	    System.out.println("MYSQLHOST: " + host);
