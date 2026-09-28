@@ -45,13 +45,30 @@ public class complaintDao {
 
 	        return value;
 	    }
+	 
+	 public void initTable() {
+		    String sql = "CREATE TABLE IF NOT EXISTS complaints ("
+		        + "id INT AUTO_INCREMENT PRIMARY KEY,"
+		        + "name VARCHAR(100), phone VARCHAR(20),"
+		        + "village_name VARCHAR(100), pincode VARCHAR(10),"
+		        + "category VARCHAR(100), description TEXT,"
+		        + "location VARCHAR(255),"
+		        + "status VARCHAR(20) DEFAULT 'Pending')";
+		    try (Connection con = getConnection();
+		         PreparedStatement ps = con.prepareStatement(sql)) {
+		        ps.executeUpdate();
+		        System.out.println("Table ready");
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		}
 
 	public void addComplaint(String name , String phone,
 			String village_name,String pincode,
 			String category, String description, 
 			String location) throws SQLException {
 		
-		String sql="insert into complaint(name,phone,village_name,pincode,category,description,location) values(?,?,?,?,?,?,?)";
+		String sql="insert into complaints(name,phone,village_name,pincode,category,description,location) values(?,?,?,?,?,?,?)";
 
 		try(
 				Connection con = getConnection();
@@ -67,7 +84,7 @@ public class complaintDao {
 		ps.setString(7, location);
 		
 		ps.executeUpdate();
-		System.out.println("Complaint  Added Successfull");
+		System.out.println("Complaints  Added Successfull");
 		
 	}
 	catch(SQLException e) {
@@ -80,7 +97,7 @@ public class complaintDao {
 		StringBuilder json = new StringBuilder();
 
 		    json.append("[");
-		String sql="select id,name,phone,village_name,pincode,category,description,location,status from complaint";
+		String sql="select id,name,phone,village_name,pincode,category,description,location,status from complaints";
 		
 		try(Connection con = getConnection();
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -119,7 +136,7 @@ public class complaintDao {
 	
 	public void updateComplaint(int id, String status) throws SQLException {
 
-	    String sql = "UPDATE complaint SET status = ? WHERE id = ?";
+	    String sql = "UPDATE complaints SET status = ? WHERE id = ?";
 
 	    try (
 	        Connection con =
